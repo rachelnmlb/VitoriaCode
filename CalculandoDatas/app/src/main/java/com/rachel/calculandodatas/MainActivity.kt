@@ -12,6 +12,7 @@ import java.time.Period
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.time.temporal.TemporalUnit
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var inputNome: EditText
@@ -29,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         txtMesagem = findViewById(R.id.txtMensagem)
         inputDataNascimento = findViewById(R.id.dataNascimento)
         inputPresente = findViewById(R.id.txtPresente)
+
+        inputDataNascimento.maxDate = Date().time
 
         btn.setOnClickListener{
 
