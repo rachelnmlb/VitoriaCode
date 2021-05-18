@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical">
+<LinearLayout
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
 
     <EditText
         android:id="@+id/txtNome"
@@ -42,6 +43,7 @@
         android:id="@+id/btn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:background="#00FA9A"
         android:text="Adicionar" />
 
     <TextView
@@ -51,6 +53,6 @@
         android:visibility="invisible"
         android:text="" />
 
+    </LinearLayout>
 
-
-</LinearLayout>
+</ScrollView>
