@@ -38,19 +38,20 @@ class MainActivity : AppCompatActivity() {
 
         val sequenciaFibonacci = mutableListOf<Int>()
         var posicao = valor - 1
-        var anterior = 1
-        var soma = 1
-        var fibonacci = 0
+        var anterior = 0
+        var atual = 1
 
         for (i in 0..posicao) {
 
-            if (i == 0 || i == 1){
+            if (i == 0 ){
+                sequenciaFibonacci.add(0)
+            } else if (i== 1){
                 sequenciaFibonacci.add(1)
-            } else {
-                fibonacci = soma + anterior
-                sequenciaFibonacci.add(fibonacci)
-                anterior = soma
-                soma = fibonacci
+            }else {
+                var soma = atual + anterior
+                sequenciaFibonacci.add(soma)
+                anterior = atual
+                atual = soma
             }
         }
         return sequenciaFibonacci

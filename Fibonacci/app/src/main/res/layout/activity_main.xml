@@ -4,29 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="#B2FFC107"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="300dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="-300dp"
+        android:layout_marginBottom="-100dp"
+        app:srcCompat="@drawable/finonacci" />
 
     <EditText
         android:id="@+id/indice"
         android:layout_width="167dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:drawableTint="#0C0C0C"
         android:ems="10"
         android:hint="Posição desejada"
         android:inputType="number"
         tools:layout_editor_absoluteX="109dp"
         tools:layout_editor_absoluteY="160dp" />
 
-
     <Button
         android:id="@+id/btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#232425"
+        android:drawableTint="#8F3131"
         android:text="Consultar"
         tools:layout_editor_absoluteX="158dp"
         tools:layout_editor_absoluteY="275dp" />
-
 
     <TextView
         android:id="@+id/resultado"
@@ -35,5 +46,8 @@
         android:text=""
         android:visibility="invisible"
         tools:ignore="InvalidId" />
+
+
+
 
 </LinearLayout>
