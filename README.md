@@ -1,5 +1,6 @@
+# Vitória Code   
+
 ![Capa](capa.png)
-# Vitória Code
 
 ## Repositório das atividades realizadas durante o curso.
 
@@ -11,6 +12,6 @@
 
 ## Fibonacci
 
-### Mostra a sequencia de Fibonacci até o numero digitado.
+### Mostra a sequência de Fibonacci até o numero digitado.
 
 ![fibonacci](fibonnaci.png)
