@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/mensagemAndar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Você está no"
+        android:textColor="#070707"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <TextView
+        android:id="@+id/andarAtual"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Andar atual" />
+
+    <TextView
+        android:id="@+id/qtdPessoas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="#F1EDED"
+        android:backgroundTint="#A190FF"
+        android:text="" />
+
+    <EditText
+        android:id="@+id/andarDigitado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="Digite um andar"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/btnSolicitarAndar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:backgroundTint="#5EB2D8"
+        android:text="IR PARA O ANDAR SELECIONADO" />
+
+
+    <TextView
+        android:id="@+id/menssagemComplementar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Alguém irá..." />
+
+
+    <Button
+        android:id="@+id/btnEntrar"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:backgroundTint="#439746"
+        android:text="ENTRAR" />
+
+    <Button
+        android:id="@+id/btnSair"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:backgroundTint="#FF0000"
+        android:text="SAIR" />
+
+
+</LinearLayout>
