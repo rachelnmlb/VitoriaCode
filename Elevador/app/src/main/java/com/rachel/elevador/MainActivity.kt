@@ -6,10 +6,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.material.textfield.TextInputLayout
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var inputAndarDigitado : EditText
+    lateinit var inputAndarDigitado : TextInputLayout
     lateinit var andarAtual : TextView
     lateinit var qtdPessoas : TextView
     lateinit var btnSolicitarAndar : Button
@@ -28,18 +29,18 @@ class MainActivity : AppCompatActivity() {
         btnSair = findViewById(R.id.btnSair)
         qtdPessoas = findViewById(R.id.qtdPessoas)
 
-        qtdPessoas.text = "0/${elevador.capacidadeMax} pessoa(s) no elevador"
+        qtdPessoas.text = "0/${elevador.capacidadeMax}"
         andarAtual.text = "terreo"
 
         btnSolicitarAndar.setOnClickListener {
 
-            var andarDesejado = inputAndarDigitado?.text.toString().toInt()
+            var andarDesejado = inputAndarDigitado?.editText?.text.toString().toInt()
 
             if (elevador.irPara(andarDesejado)) {
                 if (elevador.andarAtual == 0){
                     andarAtual.text = "Terreo"
                 } else {
-                    andarAtual.text = " ${elevador.andarAtual} andar"
+                    andarAtual.text = " ${elevador.andarAtual}° \n andar"
                 }
             } else {
                 Toast.makeText(this,
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         btnEntrar.setOnClickListener {
 
                 if (elevador.entrar()){
-                    qtdPessoas.text = "${elevador.qtdPessoas}/${elevador.capacidadeMax} pessoa(s) no elevador"
+                    qtdPessoas.text = "${elevador.qtdPessoas}/${elevador.capacidadeMax}"
                 } else {
                     Toast.makeText(this,
                         "O elevador está cheio! Espere alguem sair.",

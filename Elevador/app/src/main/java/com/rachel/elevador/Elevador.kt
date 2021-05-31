@@ -3,9 +3,11 @@ package com.rachel.elevador
 class Elevador (
     val capacidadeMax: Int,
     val totalAndares: Int,
-    var qtdPessoas: Int = 0,
-    var andarAtual: Int =0
     ) {
+    var qtdPessoas: Int = 0
+        private set
+    var andarAtual: Int =0
+        private set
 
     fun irPara(andar: Int): Boolean{
         if (andar in 1 .. totalAndares){
