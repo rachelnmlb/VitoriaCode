@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         qtdPessoas = findViewById(R.id.qtdPessoas)
 
         qtdPessoas.text = "0/${elevador.capacidadeMax}"
-        andarAtual.text = "terreo"
+        andarAtual.text = "T"
 
         btnSolicitarAndar.setOnClickListener {
 
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         btnSair.setOnClickListener {
 
                 if (elevador.sair()){
-                    qtdPessoas.text="${elevador.qtdPessoas}/${elevador.capacidadeMax} pessoa(s) no elevador"
+                    qtdPessoas.text="${elevador.qtdPessoas}/${elevador.capacidadeMax}"
                 } else {
                     Toast.makeText(this,
                         "Não tem ninguém para sair do elevador.",

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#C5CDCD"
+    tools:context=".MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:id="@+id/Nome"
+        android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:layout_marginTop="5dp"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+
+            android:id="@+id/Numero"
+            android:layout_marginTop="5dp"
+            android:layout_marginHorizontal="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Celular"
+            >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:layout_marginTop="5dp"
+            />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="40dp">
+            <RadioButton android:id="@+id/pessoal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pessoal"
+                android:checked="true"
+                android:onClick="onRadioButtonClicked"
+                tools:ignore="OnClick" />
+            <RadioButton android:id="@+id/trabalho"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trabalho"
+                android:onClick="onRadioButtonClicked"/>
+        </RadioGroup>
+        <com.google.android.material.textfield.TextInputLayout
+
+            android:id="@+id/informacao"
+            android:layout_marginTop="5dp"
+            android:layout_marginHorizontal="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Referência"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:layout_marginTop="5dp"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnSalvar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="-10dp"
+            android:backgroundTint="#045950"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="Salvar" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            android:id="@+id/pesquisar"
+            android:layout_marginTop="5dp"
+            android:layout_marginHorizontal="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pesquisar"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:layout_marginTop="5dp"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnPesquisar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="-15dp"
+            android:layout_marginLeft="-35dp"
+            android:background="@drawable/lupa" />
+    </LinearLayout>
+
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="5dp"
+            >
+
+            <TextView
+                android:id="@+id/listaContatos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lista de Contatos"/>
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>
