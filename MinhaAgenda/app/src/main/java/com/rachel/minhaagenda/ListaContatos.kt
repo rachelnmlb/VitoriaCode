@@ -8,9 +8,6 @@ class ListaContatos() {
     }
 
     fun pesquisar(nome: String): List<Contato> {
-        return contatos.filter { contato -> contato.nome.contains(nome) }
+        return contatos.filter { contato -> contato.nome.contains(nome, ignoreCase = true) }
     }
-
-
-
 }

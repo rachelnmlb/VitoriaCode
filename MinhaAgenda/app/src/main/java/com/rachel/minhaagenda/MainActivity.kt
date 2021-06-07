@@ -63,6 +63,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnVoltar.setOnClickListener {
             exibirLista(listaContatos.contatos)
             binding.btnVoltar.visibility = View.INVISIBLE
+            binding.pesquisar.editText?.text?.clear()
         }
 
     }
@@ -124,7 +125,7 @@ class MainActivity : AppCompatActivity() {
                 listaString += "$i- Nome:${contato.nome}\nTelefone: ${contato.numero}\nReferencia: ${contato.referencia} \n\n"
                 i++
             } else if (contato is ContatoProfissional) {
-                listaString += "$i- Nome:${contato.nome}\nTelefone: ${contato.numero}\nReferencia: ${contato.email}\n\n"
+                listaString += "$i- Nome:${contato.nome}\nTelefone: ${contato.numero}\nE-mail: ${contato.email}\n\n"
                 i++
             }
         }
