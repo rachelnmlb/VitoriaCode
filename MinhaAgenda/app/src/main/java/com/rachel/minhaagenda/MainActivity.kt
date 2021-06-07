@@ -3,13 +3,18 @@ package com.rachel.minhaagenda
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
+import android.util.Patterns
 import android.view.View
 import android.widget.RadioButton
+import android.widget.Toast
 import com.rachel.minhaagenda.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
     private val listaContatos = ListaContatos()
+    lateinit var nome: String
+    lateinit var numero: String
+    lateinit var informacaoContato: String
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
@@ -19,28 +24,78 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnSalvar.setOnClickListener {
-            if (binding.pessoal.isChecked){
-                var contatoPessoal = ContatoPessoal(binding.Nome.editText.toString(),
-                                                    binding.Numero.editText.toString(),
-                                                    binding.informacao.editText.toString())
-                listaContatos.adicionar(contatoPessoal)
-            } else {
-                var contatoTrabalho = ContatoProfissional(binding.Nome.editText.toString(),
-                                                          binding.Numero.editText.toString(),
-                                                          binding.informacao.editText.toString())
-                listaContatos.adicionar(contatoTrabalho)
+
+            nome = binding.nome.editText?.text.toString()
+            numero = binding.numero.editText?.text.toString()
+            informacaoContato = binding.informacao.editText?.text.toString()
+
+
+            if (validar()) {
+
+                if (binding.pessoal.isChecked){
+                    var contatoPessoal = ContatoPessoal(nome,numero,informacaoContato)
+                    listaContatos.adicionar(contatoPessoal)
+                    limparErro()
+                } else {
+                    if (Patterns.EMAIL_ADDRESS.matcher(informacaoContato).matches()) {
+                        var contatoTrabalho = ContatoProfissional(nome, numero, informacaoContato)
+                        listaContatos.adicionar(contatoTrabalho)
+                        limparErro()
+                    } else {
+                        binding.informacao.error = "E-mail inválido!"
+                    }
+
+                }
+                binding.nome.editText?.text?.clear()
+                binding.numero.editText?.text?.clear()
+                binding.informacao.editText?.text?.clear()
             }
-            binding.listaContatos.text = listaContatos.ordenarLista().toString()
+
+            exibirLista(listaContatos.contatos)
         }
 
+        binding.btnPesquisar.setOnClickListener {
+            binding.btnVoltar.visibility = View.VISIBLE
+            var pesquisa = binding.pesquisar.editText?.text.toString()
+            exibirLista(listaContatos.pesquisar(pesquisa))
+        }
+
+        binding.btnVoltar.setOnClickListener {
+            exibirLista(listaContatos.contatos)
+            binding.btnVoltar.visibility = View.INVISIBLE
+        }
 
     }
+
+    fun validar() : Boolean{
+        var validade = true
+
+        if (nome.isEmpty()){
+            binding.nome.error = "Informe um valor"
+            validade = false
+        }
+        if (numero.isEmpty()){
+            binding.numero.error = "Informe um valor"
+            validade = false
+        }
+        if (informacaoContato.isEmpty()){
+            binding.informacao.error = "Informe um valor"
+            validade = false
+        }
+        return validade
+    }
+
+    fun limparErro(){
+        binding.nome.error = null
+        binding.numero.error = null
+        binding.informacao.error = null
+
+    }
+
     fun onRadioButtonClicked(view: View) {
         if (view is RadioButton) {
-            // Is the button now checked?
             val checked = view.isChecked
 
-            // Check which radio button was clicked
             when (view.getId()) {
                 binding.pessoal.id ->
                     if (checked) {
@@ -54,6 +109,26 @@ class MainActivity : AppCompatActivity() {
                     }
             }
         }
+    }
+
+    private fun exibirLista(contatos: List<Contato> ) {
+        var i = 1
+        var listaString = ""
+
+        val contatosOrdenados = contatos.sortedWith(
+                compareBy(String.CASE_INSENSITIVE_ORDER, {it.nome})
+        )
+
+        for (contato in contatosOrdenados) {
+            if (contato is ContatoPessoal) {
+                listaString += "$i- Nome:${contato.nome}\nTelefone: ${contato.numero}\nReferencia: ${contato.referencia} \n\n"
+                i++
+            } else if (contato is ContatoProfissional) {
+                listaString += "$i- Nome:${contato.nome}\nTelefone: ${contato.numero}\nReferencia: ${contato.email}\n\n"
+                i++
+            }
+        }
+        binding.listaContatos.text = listaString
     }
 }
 
