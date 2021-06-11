@@ -72,15 +72,15 @@ class MainActivity : AppCompatActivity() {
         var validade = true
 
         if (nome.isEmpty()){
-            binding.nome.error = "Informe um valor"
+            binding.nome.error = getString(R.string.error)
             validade = false
         }
         if (numero.isEmpty()){
-            binding.numero.error = "Informe um valor"
+            binding.numero.error = getString(R.string.error)
             validade = false
         }
         if (informacaoContato.isEmpty()){
-            binding.informacao.error = "Informe um valor"
+            binding.informacao.error = getString(R.string.error)
             validade = false
         }
         return validade
@@ -122,10 +122,10 @@ class MainActivity : AppCompatActivity() {
 
         for (contato in contatosOrdenados) {
             if (contato is ContatoPessoal) {
-                listaString += "$i- Nome:${contato.nome}\nTelefone: ${contato.numero}\nReferencia: ${contato.referencia} \n\n"
+                listaString += "$i- Nome: ${contato.nome}\nTelefone: ${contato.numero}\nReferencia: ${contato.referencia} \n\n"
                 i++
             } else if (contato is ContatoProfissional) {
-                listaString += "$i- Nome:${contato.nome}\nTelefone: ${contato.numero}\nE-mail: ${contato.email}\n\n"
+                listaString += "$i- Nome: ${contato.nome}\nTelefone: ${contato.numero}\nE-mail: ${contato.email}\n\n"
                 i++
             }
         }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="padrao">
+        <item name="android:layout_marginHorizontal">40dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+    </style>
+    <style name="pesquisar">
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginRight">96dp</item>
+        <item name="android:layout_marginLeft">40dp</item>
+
+    </style>
+    <style name="lupa">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:background">@drawable/lupa</item>
+    </style>
+</resources>

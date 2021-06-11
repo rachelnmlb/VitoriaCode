@@ -5,76 +5,109 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#C5CDCD"
+    android:background="@color/fundo"
     tools:context=".MainActivity">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-
+     <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <com.google.android.material.textfield.TextInputLayout
 
         android:id="@+id/nome"
-        android:layout_marginTop="5dp"
-        android:layout_marginHorizontal="40dp"
+        style="@style/padrao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome"
+        android:hint="@string/nome"
+        app:layout_constraintTop_toTopOf="parent"
         >
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:layout_marginTop="5dp"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
 
             android:id="@+id/numero"
-            android:layout_marginTop="5dp"
-            android:layout_marginHorizontal="40dp"
+            style="@style/padrao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Celular"
+            android:hint="@string/celular"
+            app:layout_constraintTop_toBottomOf="@+id/nome"
             >
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:layout_marginTop="5dp"
             />
         </com.google.android.material.textfield.TextInputLayout>
 
         <RadioGroup
+            android:id="@+id/radiogrup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginHorizontal="40dp">
+            style="@style/padrao"
+            app:layout_constraintTop_toBottomOf="@+id/numero">
+
             <RadioButton android:id="@+id/pessoal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pessoal"
+                android:text="@string/pessoal"
                 android:checked="true"
                 android:onClick="onRadioButtonClicked"
                 tools:ignore="OnClick" />
+
             <RadioButton android:id="@+id/trabalho"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Trabalho"
+                android:text="@string/trabalho"
                 android:onClick="onRadioButtonClicked"/>
+
         </RadioGroup>
+
         <com.google.android.material.textfield.TextInputLayout
 
             android:id="@+id/informacao"
-            android:layout_marginTop="5dp"
-            android:layout_marginHorizontal="40dp"
+            style="@style/padrao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Referência"
+            android:hint="@string/referencias"
+            app:layout_constraintTop_toBottomOf="@+id/radiogrup"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:layout_marginTop="5dp"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+       <Button
+            android:id="@+id/btnSalvar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/btn"
+            android:layout_marginTop="16dp"
+            android:text="@string/salvar"
+            app:layout_constraintTop_toBottomOf="@+id/informacao"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            android:id="@+id/pesquisar"
+            style="@style/pesquisar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/pesquisae"
+            app:layout_constraintTop_toBottomOf="@+id/btnSalvar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -86,64 +119,35 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/btnSalvar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="-10dp"
-            android:backgroundTint="#045950"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:text="Salvar" />
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-        <com.google.android.material.textfield.TextInputLayout
-
-            android:id="@+id/pesquisar"
-            android:layout_marginTop="5dp"
-            android:layout_marginHorizontal="40dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Pesquisar"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="260dp"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:layout_marginTop="5dp"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
             android:id="@+id/btnPesquisar"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="-15dp"
-            android:layout_marginLeft="-35dp"
-            android:background="@drawable/lupa" />
-    </LinearLayout>
+            style="@style/lupa"
+            app:layout_constraintLeft_toRightOf="@+id/pesquisar"
+            app:layout_constraintBottom_toBottomOf="@+id/pesquisar"/>
 
-            <TextView
+
+        <TextView
                 android:id="@+id/listaContatos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="10dp"
+                style="@style/padrao"
                 android:textSize="18dp"
-                android:textColor="#0B0A0A"
-                android:text="Lista de Contatos"/>
+                android:textColor="@color/lista"
+                android:text="@string/lista"
+                app:layout_constraintTop_toBottomOf="@id/pesquisar"
+                app:layout_constraintLeft_toLeftOf="parent"/>
 
         <Button
             android:id="@+id/btnVoltar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
+            style="@style/padrao"
             android:visibility="invisible"
-            android:text="Voltar" />
-    </LinearLayout>
+            android:text="@string/voltar"
+            app:layout_constraintTop_toBottomOf="@+id/listaContatos"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
 
-</ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
