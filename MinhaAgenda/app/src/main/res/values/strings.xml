@@ -9,6 +9,6 @@
     <string name="lista">Lista de contatos</string>
     <string name="voltar">Voltar</string>
     <string name="pesquisae">Pesquisar</string>
-    <string name="error">Informe um valor.</string>
+    <string name="erro">Informe um valor.</string>
 
 </resources>

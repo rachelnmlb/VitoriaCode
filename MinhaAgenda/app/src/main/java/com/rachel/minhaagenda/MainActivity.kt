@@ -11,7 +11,7 @@ import com.rachel.minhaagenda.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
-    private val listaContatos = ListaContatos()
+    val listaContatos = ListaContatos()
     lateinit var nome: String
     lateinit var numero: String
     lateinit var informacaoContato: String
@@ -46,22 +46,23 @@ class MainActivity : AppCompatActivity() {
                     }
 
                 }
+
                 binding.nome.editText?.text?.clear()
                 binding.numero.editText?.text?.clear()
                 binding.informacao.editText?.text?.clear()
             }
 
-            exibirLista(listaContatos.contatos)
+            binding.listaContatos.text = listaContatos.exibirLista(listaContatos.contatos)
         }
 
         binding.btnPesquisar.setOnClickListener {
             binding.btnVoltar.visibility = View.VISIBLE
             var pesquisa = binding.pesquisar.editText?.text.toString()
-            exibirLista(listaContatos.pesquisar(pesquisa))
+            binding.listaContatos.text= listaContatos.exibirLista(listaContatos.pesquisar(pesquisa))
         }
 
         binding.btnVoltar.setOnClickListener {
-            exibirLista(listaContatos.contatos)
+            binding.listaContatos.text = listaContatos.exibirLista(listaContatos.contatos)
             binding.btnVoltar.visibility = View.INVISIBLE
             binding.pesquisar.editText?.text?.clear()
         }
@@ -72,15 +73,15 @@ class MainActivity : AppCompatActivity() {
         var validade = true
 
         if (nome.isEmpty()){
-            binding.nome.error = getString(R.string.error)
+            binding.nome.error = getString(R.string.erro)
             validade = false
         }
         if (numero.isEmpty()){
-            binding.numero.error = getString(R.string.error)
+            binding.numero.error = getString(R.string.erro)
             validade = false
         }
         if (informacaoContato.isEmpty()){
-            binding.informacao.error = getString(R.string.error)
+            binding.informacao.error = getString(R.string.erro)
             validade = false
         }
         return validade
@@ -112,24 +113,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun exibirLista(contatos: List<Contato> ) {
-        var i = 1
-        var listaString = ""
 
-        val contatosOrdenados = contatos.sortedWith(
-                compareBy(String.CASE_INSENSITIVE_ORDER, {it.nome})
-        )
-
-        for (contato in contatosOrdenados) {
-            if (contato is ContatoPessoal) {
-                listaString += "$i- Nome: ${contato.nome}\nTelefone: ${contato.numero}\nReferencia: ${contato.referencia} \n\n"
-                i++
-            } else if (contato is ContatoProfissional) {
-                listaString += "$i- Nome: ${contato.nome}\nTelefone: ${contato.numero}\nE-mail: ${contato.email}\n\n"
-                i++
-            }
-        }
-        binding.listaContatos.text = listaString
-    }
 }
 

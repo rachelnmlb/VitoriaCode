@@ -10,8 +10,7 @@ class ListaContatos() {
     fun pesquisar(nome: String): List<Contato> {
         return contatos.filter { contato -> contato.nome.contains(nome, ignoreCase = true) }
     }
-}
-private fun exibirLista(contatos: List<Contato> ) {
+    fun exibirLista(contatos: List<Contato> ) :String {
     var i = 1
     var listaString = ""
 
@@ -21,12 +20,14 @@ private fun exibirLista(contatos: List<Contato> ) {
 
     for (contato in contatosOrdenados) {
         if (contato is ContatoPessoal) {
-            listaString += "$i- Nome: ${contato.nome}\nTelefone: ${contato.numero}\nReferencia: ${contato.referencia} \n  ---------------\n\n"
+            listaString += "$i- Nome: ${contato.nome}\nTelefone: ${contato.numero}\nReferencia: ${contato.referencia} \n\n"
             i++
         } else if (contato is ContatoProfissional) {
-            listaString += "$i- Nome: ${contato.nome}\nTelefone: ${contato.numero}\nE-mail: ${contato.email}\n ---------------\n\n"
+            listaString += "$i- Nome: ${contato.nome}\nTelefone: ${contato.numero}\nE-mail: ${contato.email}\n\n"
             i++
         }
     }
+    return listaString
+}
 
 }
