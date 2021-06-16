@@ -1,8 +1,10 @@
 package com.rachel.minhaagenda
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.RadioButton
@@ -11,7 +13,6 @@ import com.rachel.minhaagenda.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
-    val listaContatos = ListaContatos()
     lateinit var nome: String
     lateinit var numero: String
     lateinit var informacaoContato: String
@@ -52,20 +53,11 @@ class MainActivity : AppCompatActivity() {
                 binding.informacao.editText?.text?.clear()
             }
 
-            binding.listaContatos.text = listaContatos.exibirLista(listaContatos.contatos)
+            val intent = Intent(this, SecondActivity::class.java)
+            intent.putExtra(LISTA, listaContatos.contatos)
+            startActivity(intent)
         }
 
-        binding.btnPesquisar.setOnClickListener {
-            binding.btnVoltar.visibility = View.VISIBLE
-            var pesquisa = binding.pesquisar.editText?.text.toString()
-            binding.listaContatos.text= listaContatos.exibirLista(listaContatos.pesquisar(pesquisa))
-        }
-
-        binding.btnVoltar.setOnClickListener {
-            binding.listaContatos.text = listaContatos.exibirLista(listaContatos.contatos)
-            binding.btnVoltar.visibility = View.INVISIBLE
-            binding.pesquisar.editText?.text?.clear()
-        }
 
     }
 
@@ -112,7 +104,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
+    companion object{
+        val listaContatos = ListaContatos()
+        val LISTA = "ListaContato"
+    }
 
 }
 
