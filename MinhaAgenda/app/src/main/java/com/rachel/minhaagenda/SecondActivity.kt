@@ -4,10 +4,21 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.rachel.minhaagenda.databinding.ActivitySecondBinding
 import kotlinx.android.synthetic.main.activity_second.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class SecondActivity : AppCompatActivity() {
+    private lateinit var rvContatos :RecyclerView
+    private lateinit var contatosAdapter: ContatosAdapter
+    private lateinit var lista: MutableList<Contato>
+    private lateinit var dataSet: MutableList<Contato>
+
     private val binding by lazy {
         ActivitySecondBinding.inflate(layoutInflater)
     }
@@ -16,9 +27,13 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val lista = intent.extras?.get(MainActivity.LISTA) as List<Contato>
-        binding.listaContatos.text = exibirLista(lista)
-        Log.d("lista contato", exibirLista(lista))
+        lista = intent.extras?.get(MainActivity.LISTA) as MutableList<Contato>
+        dataSet = ordenarLista()
+
+        rvContatos = findViewById(R.id.rvContatos)
+        contatosAdapter = ContatosAdapter(context = this, dataSet = dataSet)
+        rvContatos.adapter = contatosAdapter
+        rvContatos.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
         binding.btnVoltar.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -27,36 +42,26 @@ class SecondActivity : AppCompatActivity() {
         }
 
         binding.btnPesquisar.setOnClickListener {
-
             var pesquisa = binding.pesquisar.editText?.text.toString()
-            binding.listaContatos.text= exibirLista(pesquisar(pesquisa,lista))
+            val resultado = pesquisar(pesquisa)
+            atualizarDataSet(resultado)
+
         }
-
-
-
     }
 
-    fun exibirLista(contatos: List<Contato>): String {
-        var i = 1
-        var listaString = ""
-
-        val contatosOrdenados = contatos.sortedWith(
+    private fun ordenarLista(): MutableList<Contato> {
+        return lista.sortedWith(
             compareBy(String.CASE_INSENSITIVE_ORDER, { it.nome })
-        )
-
-        for (contato in contatosOrdenados) {
-            if (contato is ContatoPessoal) {
-                listaString += "$i- Nome: ${contato.nome}\nTelefone: ${contato.numero}\nReferencia: ${contato.referencia} \n\n"
-                i++
-            } else if (contato is ContatoProfissional) {
-                listaString += "$i- Nome: ${contato.nome}\nTelefone: ${contato.numero}\nE-mail: ${contato.email}\n\n"
-                i++
-            }
-        }
-        return listaString
+        ).toMutableList()
     }
 
-    fun pesquisar(nome: String, contatos: List<Contato>): List<Contato> {
-        return contatos.filter { contato -> contato.nome.contains(nome, ignoreCase = true) }
+    private fun pesquisar(nome: String): MutableList<Contato> {
+        return ordenarLista().filter { contato -> contato.nome.contains(nome, ignoreCase = true) }.toMutableList()
+    }
+
+    private fun atualizarDataSet(novoDataSet: List<Contato>) {
+        dataSet.clear()
+        dataSet.addAll(novoDataSet)
+        contatosAdapter.notifyDataSetChanged()
     }
 }
